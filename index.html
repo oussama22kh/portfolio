@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oussama Khobzi | IT Specialist</title>
+  <meta name="description" content="IT Specialist specializing in networking, system administration, and infrastructure maintenance.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Zain:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #1a1a1a;
+      --bg-elevated: #242424;
+      --fg: #f5f5f0;
+      --fg-dim: #a0a0a0;
+      --accent: #ff8b10;
+      --accent-dim: #995c0a;
+      --border: #4a4a4a;
+      --border-light: #333333;
+      
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-ar: 'Zain', sans-serif;
+      
+      --space-xs: 8px;
+      --space-sm: 16px;
+      --space-md: 24px;
+      --space-lg: 32px;
+      --space-xl: 48px;
+      --space-2xl: 64px;
+      --space-3xl: 96px;
+    }
+
+    [lang="ar"] {
+      font-family: var(--font-ar);
+    }
+
+    [lang="ar"] .hero-subtitle,
+    [lang="ar"] .service-card p,
+    [lang="ar"] .skill-tag,
+    [lang="ar"] .timeline-item p,
+    [lang="ar"] .contact-value {
+      font-family: var(--font-ar);
+      line-height: 1.8;
+    }
+
+    [dir="rtl"] nav a::after {
+      left: auto;
+      right: 0;
+    }
+
+    [dir="rtl"] .service-card {
+      transform: translateX(0);
+    }
+
+    [dir="rtl"] .service-card:hover {
+      transform: translateX(-4px);
+    }
+
+    [dir="rtl"] .service-card::before {
+      left: auto;
+      right: 0;
+    }
+
+    [dir="rtl"] .timeline {
+      padding-left: 0;
+      padding-right: var(--space-lg);
+    }
+
+    [dir="rtl"] .timeline::before {
+      left: auto;
+      right: 0;
+    }
+
+    [dir="rtl"] .timeline-item::before {
+      left: auto;
+      right: calc(-1 * var(--space-lg) - 5px);
+    }
+
+    [dir="rtl"] .skill-tag::before {
+      left: auto;
+      right: -20px;
+    }
+
+    [dir="rtl"] .skill-tag:hover {
+      padding-left: var(--space-sm);
+      padding-right: 28px;
+    }
+
+    [dir="rtl"] .skill-tag:hover::before {
+      left: auto;
+      right: 8px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--fg);
+      background-color: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.15s ease-out;
+    }
+
+    a:hover {
+      color: var(--fg);
+      background-color: var(--accent);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+
+    /* Header */
+    header {
+      border-bottom: 2px solid var(--border);
+      padding: var(--space-lg) 0;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo svg {
+      display: block;
+    }
+
+    nav {
+      display: flex;
+      gap: var(--space-md);
+    }
+
+    nav a {
+      font-size: 0.875rem;
+      padding: var(--space-xs) 0;
+      position: relative;
+    }
+
+    .lang-separator {
+      color: var(--border);
+      margin: 0 4px;
+    }
+
+    .lang-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--fg-dim);
+      padding: 4px 8px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.15s ease-out;
+    }
+
+    .lang-btn:hover,
+    .lang-btn.active {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .lang-btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.2s ease-out;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero */
+    .hero {
+      padding: var(--space-3xl) 0;
+      border-bottom: 2px solid var(--border);
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: var(--space-md);
+    }
+
+    .hero-title {
+      color: var(--accent);
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--fg-dim);
+      max-width: 50ch;
+      margin-bottom: var(--space-lg);
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 40%;
+      height: 100%;
+      background: 
+        radial-gradient(ellipse at top right, rgba(255, 139, 16, 0.15) 0%, transparent 60%),
+        radial-gradient(ellipse at bottom right, rgba(255, 139, 16, 0.08) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 300px;
+      height: 300px;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E");
+      opacity: 0.08;
+      pointer-events: none;
+      z-index: 1;
+      clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      font-size: 1rem;
+      font-weight: 700;
+      padding: var(--space-sm) var(--space-md);
+      border: 2px solid var(--accent);
+      background: transparent;
+      color: var(--accent);
+      cursor: pointer;
+      transition: all 0.2s ease-out;
+    }
+
+    .hero-cta:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    /* Services */
+    .section {
+      padding: var(--space-3xl) 0;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .section-title {
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: var(--space-xl);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 0;
+      border: 2px solid var(--border);
+    }
+
+    .service-card {
+      padding: var(--space-lg);
+      border: 2px solid var(--border);
+      margin: -1px;
+      transition: background-color 0.2s ease-out, transform 0.2s ease-out;
+      position: relative;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 0;
+      background: var(--accent);
+      transition: height 0.2s ease-out;
+    }
+
+    .service-card:hover {
+      background-color: var(--bg-elevated);
+      transform: translateX(4px);
+    }
+
+    .service-card:hover::before {
+      height: 100%;
+    }
+
+    .service-number {
+      font-size: 0.75rem;
+      color: var(--accent-dim);
+      margin-bottom: var(--space-sm);
+    }
+
+    .service-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: var(--space-xs);
+    }
+
+    .service-card p {
+      font-size: 0.875rem;
+      color: var(--fg-dim);
+      line-height: 1.5;
+    }
+
+    /* Skills */
+    .skills-layout {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 0;
+      border: 2px solid var(--border);
+    }
+
+    .skill-group {
+      border: 2px solid var(--border);
+      margin: -1px;
+    }
+
+    .skill-group-header {
+      padding: var(--space-sm) var(--space-md);
+      background: var(--bg-elevated);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+    }
+
+    .skill-group-tags {
+      padding: var(--space-sm);
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+    }
+
+    @media (max-width: 768px) {
+      .skills-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .skills-label {
+      padding: var(--space-lg);
+      border: 2px solid var(--border);
+      margin: -1px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--fg-dim);
+      background: var(--bg-elevated);
+    }
+
+    .skills-list {
+      padding: var(--space-lg);
+      border: 2px solid var(--border);
+      margin: -1px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .skill-tag {
+      font-size: 0.875rem;
+      padding: var(--space-xs) var(--space-sm);
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--fg);
+      transition: all 0.15s ease-out;
+      position: relative;
+    }
+
+    .skill-tag::before {
+      content: '//';
+      position: absolute;
+      left: -20px;
+      opacity: 0;
+      color: var(--accent);
+      font-size: 0.75rem;
+      transition: opacity 0.15s ease-out, left 0.15s ease-out;
+    }
+
+    .skill-tag:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      padding-left: 28px;
+    }
+
+    .skill-tag:hover::before {
+      opacity: 1;
+      left: 8px;
+    }
+
+    .keyword {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* Service card keyword highlight */
+    .service-card p .keyword {
+      background: rgba(255, 139, 16, 0.1);
+      padding: 0 4px;
+      border-radius: 2px;
+    }
+
+    /* Logo pulse animation */
+    .logo svg {
+      transition: transform 0.3s ease-out;
+    }
+
+    .logo:hover svg {
+      transform: scale(1.1);
+    }
+
+    /* Experience */
+    .timeline {
+      position: relative;
+      padding-left: var(--space-lg);
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: var(--border);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: var(--space-xl);
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: calc(-1 * var(--space-lg) - 5px);
+      top: 8px;
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+    }
+
+    .timeline-year {
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: var(--space-xs);
+    }
+
+    .timeline-item h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: var(--space-xs);
+    }
+
+    .timeline-item p {
+      font-size: 0.875rem;
+      color: var(--fg-dim);
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0;
+      border: 2px solid var(--border);
+    }
+
+    .contact-item {
+      padding: var(--space-lg);
+      border: 2px solid var(--border);
+      margin: -1px;
+      transition: background-color 0.2s ease-out;
+    }
+
+    .contact-item:hover {
+      background-color: var(--bg-elevated);
+    }
+
+    .contact-label {
+      font-size: 0.75rem;
+      color: var(--fg-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: var(--space-xs);
+    }
+
+    .contact-value {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .contact-value a {
+      display: inline-block;
+    }
+
+    /* Footer */
+    footer {
+      padding: var(--space-lg) 0;
+      border-top: 2px solid var(--border);
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 0.75rem;
+      color: var(--fg-dim);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      .header-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      nav {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .hero {
+        padding: var(--space-xl) 0;
+        min-height: auto;
+      }
+
+      .section {
+        padding: var(--space-xl) 0;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Focus states for accessibility */
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* Skip link */
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: var(--space-md);
+      background: var(--accent);
+      color: var(--bg);
+      padding: var(--space-xs) var(--space-sm);
+      font-size: 0.875rem;
+      font-weight: 700;
+      z-index: 100;
+    }
+
+    .skip-link:focus {
+      top: var(--space-md);
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header>
+    <div class="container header-inner">
+      <div class="logo" aria-label="Oussama Khobzi">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <circle cx="20" cy="20" r="18" fill="var(--accent)"/>
+        </svg>
+      </div>
+      <nav role="navigation" aria-label="Main navigation">
+        <a href="#services" class="en" lang="en">Services</a>
+        <a href="#services" class="ar" lang="ar" dir="rtl" style="display:none;">الخدمات</a>
+        <a href="#skills" class="en" lang="en">Skills</a>
+        <a href="#skills" class="ar" lang="ar" dir="rtl" style="display:none;">المهارات</a>
+        <a href="#experience" class="en" lang="en">Experience</a>
+        <a href="#experience" class="ar" lang="ar" dir="rtl" style="display:none;">الخبرة</a>
+        <a href="#contact" class="en" lang="en">Contact</a>
+        <a href="#contact" class="ar" lang="ar" dir="rtl" style="display:none;">التواصل</a>
+        <span class="lang-separator">|</span>
+        <button class="lang-btn" onclick="toggleLang('en')" aria-label="English">EN</button>
+        <button class="lang-btn" onclick="toggleLang('ar')" aria-label="العربية">ع</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container">
+        <h1 id="hero-title">
+          <span class="en">Oussama Khobzi</span>
+          <span class="ar" lang="ar" dir="rtl" style="display:none;">أسامة خبزي</span><br>
+          <span class="hero-title en">IT and SWE</span>
+          <span class="hero-title ar" lang="ar" dir="rtl" style="display:none;">تكنولوجيا المعلومات وهندسة البرمجيات</span>
+        </h1>
+        <p class="hero-subtitle en">
+          Infrastructure specialist with expertise in networking, system administration, and technical maintenance. Building reliable systems that work.
+        </p>
+        <p class="hero-subtitle ar" lang="ar" dir="rtl" style="display:none;">
+          متخصص في البنية التحتية مع خبرة في الشبكات وإدارة الأنظمة والصيانة التقنية. بناء أنظمة موثوقة تعمل.
+        </p>
+        <a href="#contact" class="hero-cta en">
+          Get in touch
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="#contact" class="hero-cta ar" lang="ar" dir="rtl" style="display:none;">
+          تواصل معي
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <section id="services" class="section" aria-labelledby="services-title">
+      <div class="container">
+        <h2 id="services-title" class="section-title en">Services</h2>
+        <h2 id="services-title-ar" class="section-title ar" lang="ar" dir="rtl" style="display:none;">الخدمات</h2>
+        <div class="services-grid" role="list">
+          <article class="service-card" role="listitem">
+            <div class="service-number en">01</div>
+            <div class="service-number ar" lang="ar" dir="rtl" style="display:none;">٠١</div>
+            <h3 class="en">Network Infrastructure</h3>
+            <h3 class="ar" lang="ar" dir="rtl" style="display:none;">بنية الشبكات</h3>
+            <p class="en"><span class="keyword">LAN/WAN</span> setup, router configuration, <span class="keyword">VPN</span> deployment, <span class="keyword">firewall</span> management, and network security hardening.</p>
+            <p class="ar" lang="ar" dir="rtl" style="display:none;"><span class="keyword">LAN/WAN</span> إعداد الشبكات، تكوين الراوتر، نشر <span class="keyword">VPN</span>، وإدارة <span class="keyword">الجدار الناري</span> وتأمين الشبكة.</p>
+          </article>
+          <article class="service-card" role="listitem">
+            <div class="service-number en">02</div>
+            <div class="service-number ar" lang="ar" dir="rtl" style="display:none;">٠٢</div>
+            <h3 class="en">System Administration</h3>
+            <h3 class="ar" lang="ar" dir="rtl" style="display:none;">إدارة الأنظمة</h3>
+            <p class="en"><span class="keyword">Docker</span> orchestration, <span class="keyword">Linux</span> server management, <span class="keyword">Active Directory</span>, and infrastructure automation.</p>
+            <p class="ar" lang="ar" dir="rtl" style="display:none;">تنسيق <span class="keyword">Docker</span>، إدارة خوادم <span class="keyword">Linux</span>، <span class="keyword">Active Directory</span>، وأتمتة البنية التحتية.</p>
+          </article>
+          <article class="service-card" role="listitem">
+            <div class="service-number en">03</div>
+            <div class="service-number ar" lang="ar" dir="rtl" style="display:none;">٠٣</div>
+            <h3 class="en">Backend Development</h3>
+            <h3 class="ar" lang="ar" dir="rtl" style="display:none;">تطوير الواجهة الخلفية</h3>
+            <p class="en"><span class="keyword">Python</span> scripting, <span class="keyword">Odoo ERP</span> implementation, API development, and backend system maintenance.</p>
+            <p class="ar" lang="ar" dir="rtl" style="display:none;">برمجة <span class="keyword">Python</span>، تطبيق <span class="keyword">Odoo ERP</span>، تطوير واجهات برمجية، وصيانة أنظمة الواجهة الخلفية.</p>
+          </article>
+          <article class="service-card" role="listitem">
+            <div class="service-number en">04</div>
+            <div class="service-number ar" lang="ar" dir="rtl" style="display:none;">٠٤</div>
+            <h3 class="en">Technical Support</h3>
+            <h3 class="ar" lang="ar" dir="rtl" style="display:none;">الدعم التقني</h3>
+            <p class="en">Tier 1-2 support, helpdesk management, incident response, and IT documentation.</p>
+            <p class="ar" lang="ar" dir="rtl" style="display:none;">دعم المستويين الأول والثاني، إدارة مكتب المساعدة، الاستجابة للحوادث، وتوثيق تقنية المعلومات.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section" aria-labelledby="skills-title">
+      <div class="container">
+        <h2 id="skills-title" class="section-title en">Technical Skills</h2>
+        <h2 id="skills-title-ar" class="section-title ar" lang="ar" dir="rtl" style="display:none;">المهارات التقنية</h2>
+        <div class="skills-layout">
+          <div class="skills-label en">Core Competencies</div>
+          <div class="skills-label ar" lang="ar" dir="rtl" style="display:none;">الكفاءات الأساسية</div>
+<div class="skills-list" role="list">
+            <div class="skill-group">
+              <div class="skill-group-header en">Networking</div>
+              <div class="skill-group-header ar" lang="ar" dir="rtl" style="display:none;">الشبكات</div>
+              <div class="skill-group-tags">
+                <span class="skill-tag">Network Security</span>
+                <span class="skill-tag">TCP/IP</span>
+                <span class="skill-tag">Cisco</span>
+                <span class="skill-tag">VPN</span>
+                <span class="skill-tag">Firewall</span>
+                <span class="skill-tag">DNS/DHCP</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <div class="skill-group-header en">Systems</div>
+              <div class="skill-group-header ar" lang="ar" dir="rtl" style="display:none;">الأنظمة</div>
+              <div class="skill-group-tags">
+                <span class="skill-tag">Windows Server</span>
+                <span class="skill-tag">Linux</span>
+                <span class="skill-tag">VMware</span>
+                <span class="skill-tag">Hyper-V</span>
+                <span class="skill-tag">Active Directory</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <div class="skill-group-header en">DevOps</div>
+              <div class="skill-group-header ar" lang="ar" dir="rtl" style="display:none;">ديف أوبس</div>
+              <div class="skill-group-tags">
+                <span class="skill-tag">Docker</span>
+                <span class="skill-tag">Bash</span>
+                <span class="skill-tag">PowerShell</span>
+                <span class="skill-tag">Backup Solutions</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <div class="skill-group-header en">Development</div>
+              <div class="skill-group-header ar" lang="ar" dir="rtl" style="display:none;">التطوير</div>
+              <div class="skill-group-tags">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Odoo</span>
+                <span class="skill-tag">Backend</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section" aria-labelledby="experience-title">
+      <div class="container">
+        <h2 id="experience-title" class="section-title en">Experience</h2>
+        <h2 id="experience-title-ar" class="section-title ar" lang="ar" dir="rtl" style="display:none;">الخبرة</h2>
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="timeline-year en">2025 - Present</div>
+            <div class="timeline-year ar" lang="ar" dir="rtl" style="display:none;">٢٠٢٥ - حاضر</div>
+            <h3 class="en">System Administrator</h3>
+            <h3 class="ar" lang="ar" dir="rtl" style="display:none;">مدير الأنظمة</h3>
+            <p class="en">Windows and Linux server management, network configuration, Active Directory, and IT infrastructure operations.</p>
+            <p class="ar" lang="ar" dir="rtl" style="display:none;">إدارة خوادم Windows و Linux، تكوين الشبكات، Active Directory، وتشغيل البنية التحتية.</p>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-year en">2024</div>
+            <div class="timeline-year ar" lang="ar" dir="rtl" style="display:none;">٢٠٢٤</div>
+            <h3 class="en">IT Specialist & Helpdesk</h3>
+            <h3 class="ar" lang="ar" dir="rtl" style="display:none;">متخصص تقنية المعلومات ومكتب المساعدة</h3>
+            <p class="en">Managing network infrastructure, server administration, and providing technical support for enterprise environments.</p>
+            <p class="ar" lang="ar" dir="rtl" style="display:none;">إدارة البنية التحتية للشبكات وإدارة الخوادم وتقديم الدعم التقني لبيئات المؤسسات.</p>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-year en">2022 - 2023</div>
+            <div class="timeline-year ar" lang="ar" dir="rtl" style="display:none;">٢٠٢٢ - ٢٠٢٣</div>
+            <h3 class="en">Technician</h3>
+            <h3 class="ar" lang="ar" dir="rtl" style="display:none;">فني</h3>
+            <p class="en">Network installation, maintenance, hardware support, and troubleshooting for corporate clients.</p>
+            <p class="ar" lang="ar" dir="rtl" style="display:none;">تركيب الشبكات والصيانة ودعم الأجهزة واستكشاف الأعطال للعملاء.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section" aria-labelledby="contact-title">
+      <div class="container">
+        <h2 id="contact-title" class="section-title en">Contact</h2>
+        <h2 id="contact-title-ar" class="section-title ar" lang="ar" dir="rtl" style="display:none;">التواصل</h2>
+        <div class="contact-grid">
+          <div class="contact-item">
+            <div class="contact-label en">Email</div>
+            <div class="contact-label ar" lang="ar" dir="rtl" style="display:none;">البريد الإلكتروني</div>
+            <div class="contact-value">
+              <a href="mailto:contact@oussamakhobzi.com">contact@oussamakhobzi.com</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-label en">Location</div>
+            <div class="contact-label ar" lang="ar" dir="rtl" style="display:none;">الموقع</div>
+            <div class="contact-value en">Available Remote / On-site</div>
+            <div class="contact-value ar" lang="ar" dir="rtl" style="display:none;">متاح عن بُعد / في الموقع</div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-label en">Availability</div>
+            <div class="contact-label ar" lang="ar" dir="rtl" style="display:none;">التوفر</div>
+            <div class="contact-value en">Open to Opportunities</div>
+            <div class="contact-value ar" lang="ar" dir="rtl" style="display:none;">مفتوح للفرص</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Oussama Khobzi. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleLang(lang) {
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      
+      document.querySelectorAll('.en').forEach(el => el.style.display = lang === 'en' ? '' : 'none');
+      document.querySelectorAll('.ar').forEach(el => el.style.display = lang === 'ar' ? '' : 'none');
+      
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.trim().toLowerCase() === (lang === 'ar' ? 'ع' : 'en'));
+      });
+
+      document.querySelectorAll('nav a').forEach(link => {
+        link.style.display = '';
+      });
+      if (lang === 'en') {
+        document.querySelectorAll('nav a.ar').forEach(link => link.style.display = 'none');
+      } else {
+        document.querySelectorAll('nav a.en').forEach(link => link.style.display = 'none');
+      }
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lang = btn.textContent.trim().toLowerCase() === 'ع' ? 'ar' : 'en';
+        toggleLang(lang);
+      });
+    });
+  </script>
+</body>
+</html>
